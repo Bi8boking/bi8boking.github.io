@@ -35,6 +35,7 @@ export interface HomePageLocaleData {
   social: SiteConfig['social'];
   features: SiteConfig['features'];
   enableOnePageMode?: boolean;
+  interestHeading?: string;
   researchInterests?: string[];
   pagesToShow: PageData[];
 }
@@ -54,18 +55,19 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background min-h-screen">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-8 sm:py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
         <div className="lg:col-span-1">
           <Profile
             author={data.author}
             social={data.social}
             features={data.features}
+            interestHeading={data.interestHeading}
             researchInterests={data.researchInterests}
           />
         </div>
 
-        <div className="lg:col-span-2 space-y-8">
+        <div className="min-w-0 lg:col-span-2 space-y-11 sm:space-y-14">
           {data.pagesToShow.map((page) => (
             <section key={page.id} id={page.id} className="scroll-mt-24 space-y-8">
               {page.type === 'about' && page.sections.map((section: SectionConfig) => {

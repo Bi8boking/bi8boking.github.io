@@ -113,18 +113,18 @@ export default function Navigation({
     }
   }, [enableOnePageMode, effectiveItems]);
 
-  const isDesktopItemActive = (item: SiteConfig['navigation'][number]) =>
+  const isItemActive = (item: SiteConfig['navigation'][number]) =>
     enableOnePageMode
       ? activeHash === `#${item.target}` || (!activeHash && item.target === 'about')
       : (item.href === '/'
         ? pathname === '/'
         : pathname.startsWith(item.href));
 
-  const getDesktopItemHref = (item: SiteConfig['navigation'][number]) =>
+  const getItemHref = (item: SiteConfig['navigation'][number]) =>
     enableOnePageMode ? `/#${item.target}` : item.href;
 
-  const activeItem = effectiveItems.find((item) => isDesktopItemActive(item)) ?? null;
-  const activeHref = activeItem ? getDesktopItemHref(activeItem) : null;
+  const activeItem = effectiveItems.find((item) => isItemActive(item)) ?? null;
+  const activeHref = activeItem ? getItemHref(activeItem) : null;
   const indicatorHref = hoveredHref ?? activeHref;
 
   const measureIndicator = useCallback(() => {
@@ -161,10 +161,7 @@ export default function Navigation({
     <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50">
       {({ open }) => (
         <>
-          <motion.div
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div
             className={cn(
               'transition-all duration-300 ease-out',
               scrolled
@@ -172,7 +169,7 @@ export default function Navigation({
                 : 'bg-transparent'
             )}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
               <div className="flex justify-between items-center h-16 lg:h-20">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -217,8 +214,8 @@ export default function Navigation({
                         />
                       )}
                       {effectiveItems.map((item) => {
-                        const isActive = isDesktopItemActive(item);
-                        const href = getDesktopItemHref(item);
+                        const isActive = isItemActive(item);
+                        const href = getItemHref(item);
 
                         return (
                           <Link
@@ -266,7 +263,7 @@ export default function Navigation({
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           <AnimatePresence>
             {open && (
@@ -280,15 +277,8 @@ export default function Navigation({
                 >
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     {effectiveItems.map((item, index) => {
-                      const isActive = enableOnePageMode
-                        ? (item.href === '/' ? pathname === '/' && !activeHash : activeHash === `#${item.target}`)
-                        : (item.href === '/'
-                          ? pathname === '/'
-                          : pathname.startsWith(item.href));
-
-                      const href = enableOnePageMode
-                        ? (item.href === '/' ? '/' : `/#${item.target}`)
-                        : item.href;
+                      const isActive = isItemActive(item);
+                      const href = getItemHref(item);
 
                       return (
                         <motion.div
@@ -301,7 +291,7 @@ export default function Navigation({
                             as={Link}
                             href={href}
                             prefetch={true}
-                            onClick={() => enableOnePageMode && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
+                            onClick={() => enableOnePageMode && setActiveHash(`#${item.target}`)}
                             className={cn(
                               'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
                               isActive

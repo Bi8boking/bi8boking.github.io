@@ -1,5 +1,3 @@
-I am a PhD student at the School of Science, University of Example, advised by [Prof. Advisor One](https://example.com) and [Dr. Advisor Two](https://example.com).
+我在北京信息科技大学攻读硕士，专业是新一代电子信息技术。本科就读于同校的智能感知工程勤信实验班。
 
-Prior to this, I obtained a BSc degree with First Class Honours in Natural Science from the University of Example.
-
-My current research focuses on investigating the mathematical principles of natural philosophy.
+我关注信号处理和传感器在测量中的应用。企业实习期间，我参与了精密压力测量仪表的设计与调试，也希望在接下来的实习中继续接触这类工程问题。

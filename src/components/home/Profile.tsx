@@ -31,10 +31,11 @@ interface ProfileProps {
     author: SiteConfig['author'];
     social: SiteConfig['social'];
     features: SiteConfig['features'];
+    interestHeading?: string;
     researchInterests?: string[];
 }
 
-export default function Profile({ author, social, features, researchInterests }: ProfileProps) {
+export default function Profile({ author, social, features, interestHeading, researchInterests }: ProfileProps) {
     const messages = useMessages();
 
     const [hasLiked, setHasLiked] = useState(false);
@@ -105,39 +106,33 @@ export default function Profile({ author, social, features, researchInterests }:
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="sticky top-8"
-        >
-            {/* Profile Image */}
-            <div className="w-64 h-64 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105">
-                <Image
-                    src={author.avatar}
-                    alt={author.name}
-                    width={256}
-                    height={256}
-                    className="w-full h-full object-cover object-[32%_center]"
-                    priority
-                />
-            </div>
-
-            {/* Name and Title */}
-            <div className="text-center mb-6">
-                <h1 className="text-3xl font-serif font-bold text-primary mb-2">
-                    {author.name}
-                </h1>
-                <p className="text-lg text-accent font-medium mb-1">
-                    {author.title}
-                </p>
-                <p className="text-neutral-600 mb-2">
-                    {author.institution}
-                </p>
+        <aside className="card-bg rounded-2xl border border-neutral-200 px-5 py-7 shadow-sm lg:sticky lg:top-28 lg:px-6">
+            <div className="mb-5 flex flex-col items-center justify-center gap-4 min-[360px]:flex-row lg:flex-col">
+                <div className="aspect-[3/4] w-24 shrink-0 overflow-hidden rounded-xl ring-1 ring-neutral-200 lg:w-32">
+                    <Image
+                        src={author.avatar}
+                        alt={author.name}
+                        width={128}
+                        height={171}
+                        className="h-full w-full object-cover object-top"
+                        priority
+                    />
+                </div>
+                <div className="min-w-0 text-center min-[360px]:max-lg:text-left">
+                    <h1 className="mb-2 text-3xl font-serif font-bold tracking-tight text-primary lg:text-4xl">
+                        {author.name}
+                    </h1>
+                    <p className="mb-1 text-pretty text-sm font-medium text-accent lg:text-base">
+                        {author.title}
+                    </p>
+                    <p className="text-base text-neutral-600">
+                        {author.institution}
+                    </p>
+                </div>
             </div>
 
             {/* Contact Links */}
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 relative px-2">
+            <div className="relative mb-5 flex flex-wrap justify-center gap-3 px-2">
                 {socialLinks.map((link) => {
                     const IconComponent = link.icon;
                     if (link.isLocation) {
@@ -294,10 +289,11 @@ export default function Profile({ author, social, features, researchInterests }:
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200"
+                            className="inline-flex items-center gap-2 rounded-md border border-neutral-200 px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                             aria-label={link.name}
                         >
-                            <IconComponent className="h-5 w-5" />
+                            <IconComponent aria-hidden="true" className="h-4 w-4" />
+                            <span>{link.name}</span>
                         </a>
                     );
                 })}
@@ -305,13 +301,13 @@ export default function Profile({ author, social, features, researchInterests }:
 
             {/* Research Interests */}
             {researchInterests && researchInterests.length > 0 && (
-                <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 mb-6 hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
-                    <h3 className="font-semibold text-primary mb-3">{messages.profile.researchInterests}</h3>
-                    <div className="space-y-2 text-sm text-neutral-700 dark:text-neutral-500">
-                        {researchInterests.map((interest, index) => (
-                            <div key={index}>{interest}</div>
+                <div className="border-t border-neutral-200 pt-4 text-center">
+                    <h2 className="mb-2 text-sm font-semibold text-primary">{interestHeading || messages.profile.researchInterests}</h2>
+                    <ul className="flex flex-wrap justify-center gap-2 text-sm text-neutral-700">
+                        {researchInterests.map((interest) => (
+                            <li key={interest} className="rounded-md bg-neutral-100 px-2.5 py-1">{interest}</li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
             )}
 
@@ -353,6 +349,6 @@ export default function Profile({ author, social, features, researchInterests }:
                     </div>
                 </div>
             )}
-        </motion.div>
+        </aside>
     );
 }

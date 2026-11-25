@@ -1,27 +1,17 @@
 type = "card"
-title = "Awards"
-description = "Honors and awards I have received."
+title = "荣誉奖项"
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
+title = "光电学院研究生学业奖学金"
+subtitle = "三等奖"
+date = "2026"
+
+[[items]]
+title = "“挑战杯”首都大学生课外学术科技作品竞赛"
+subtitle = "北京市二等奖"
 date = "2025"
-content = "Description of the award."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2024"
-content = "Description of the award."
-
-[[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2023"
-content = "Description of the award."
-
-[[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2022"
-content = "Description of the award."
+title = "大学生创新创业训练计划项目"
+subtitle = "北京市市级优秀奖"
+date = "2025"

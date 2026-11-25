@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { CardPageConfig } from '@/types/page';
 
@@ -30,14 +29,12 @@ const markdownComponents = {
 };
 
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
+    const Heading = embedded ? 'h2' : 'h1';
+
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-        >
+        <div>
             <div className={embedded ? "mb-4" : "mb-8"}>
-                <h1 className={`${embedded ? "text-2xl" : "text-4xl"} font-serif font-bold text-primary mb-4`}>{config.title}</h1>
+                <Heading className={`${embedded ? "text-2xl" : "text-4xl"} font-serif font-bold text-primary mb-4`}>{config.title}</Heading>
                 {config.description && (
                     <div className={`${embedded ? "text-base" : "text-lg"} text-neutral-600 dark:text-neutral-500 max-w-2xl leading-relaxed`}>
                         <ReactMarkdown components={markdownComponents}>
@@ -49,26 +46,23 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
 
             <div className={`grid ${embedded ? "gap-4" : "gap-6"}`}>
                 {config.items.map((item, index) => (
-                    <motion.div
+                    <article
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 * index }}
-                        className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
+                        className="card-bg rounded-xl border border-neutral-200 p-4 shadow-sm sm:p-5"
                     >
-                        <div className="flex justify-between items-start mb-2">
+                        <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                             <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
                             {item.date && (
-                                <span className="text-sm text-neutral-500 font-medium bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
+                                <span className="shrink-0 whitespace-nowrap rounded-md bg-neutral-100 px-2.5 py-1 text-sm font-medium tabular-nums text-neutral-600">
                                     {item.date}
                                 </span>
                             )}
                         </div>
                         {item.subtitle && (
-                            <p className={`${embedded ? "text-sm" : "text-base"} text-accent font-medium mb-3`}>{item.subtitle}</p>
+                            <p className="text-sm font-medium text-accent">{item.subtitle}</p>
                         )}
                         {item.content && (
-                            <div className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-500 leading-relaxed`}>
+                            <div className="mt-3 text-base leading-relaxed text-neutral-700">
                                 <ReactMarkdown components={markdownComponents}>
                                     {item.content}
                                 </ReactMarkdown>
@@ -83,9 +77,9 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                 ))}
                             </div>
                         )}
-                    </motion.div>
+                    </article>
                 ))}
             </div>
-        </motion.div>
+        </div>
     );
 }
