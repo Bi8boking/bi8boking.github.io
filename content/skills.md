@@ -1,3 +1,3 @@
 - **信号与硬件**　信号处理与算法、硬件与传感器技术
-- **设计与编程**　SolidWorks、MATLAB、Python、C 语言
+- **设计与编程**　SolidWorks、MATLAB、Mexwell、Python、C 语言
 - **英语**　CET-4

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { CardPageConfig } from '@/types/page';
 
@@ -59,7 +60,18 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                             )}
                         </div>
                         {item.subtitle && (
-                            <p className="text-sm font-medium text-accent">{item.subtitle}</p>
+                            <p className="text-sm font-medium text-accent">
+                                {item.subtitle_icon && (
+                                    <Image
+                                        src={item.subtitle_icon}
+                                        alt=""
+                                        width={24}
+                                        height={24}
+                                        className="mr-2 inline-block size-6 rounded-full bg-white object-contain align-middle"
+                                    />
+                                )}
+                                {item.subtitle}
+                            </p>
                         )}
                         {item.content && (
                             <div className="mt-3 text-base leading-relaxed text-neutral-700">

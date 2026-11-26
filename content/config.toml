@@ -2,7 +2,7 @@
 title = "王启月"
 description = "王启月的个人主页。北京信息科技大学新一代电子信息技术专业硕士研究生，关注信号处理、传感器与智能检测。"
 favicon = "/favicon.png"
-last_updated = "2026 年 11 月 25 日"
+last_updated = "2026 年 11 月 26 日"
 
 [author]
 name = "王启月"
@@ -47,13 +47,13 @@ target = "skills"
 href = "/skills"
 
 [[navigation]]
-title = "实践"
-type = "page"
-target = "experience"
-href = "/experience"
-
-[[navigation]]
 title = "荣誉"
 type = "page"
 target = "awards"
 href = "/awards"
+
+[[navigation]]
+title = "实践"
+type = "page"
+target = "experience"
+href = "/experience"
