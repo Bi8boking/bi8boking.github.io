@@ -9,9 +9,9 @@ import { getRuntimeI18nConfig } from '@/lib/i18n/config';
 import type { SiteConfig } from '@/lib/config';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const config = getConfig();
-  const runtimeI18n = getRuntimeI18nConfig(config.i18n);
-  const openGraphLocale = runtimeI18n.defaultLocale === 'zh' ? 'zh_CN' : 'en_US';
+  const { defaultLocale } = getRuntimeI18nConfig(getConfig().i18n);
+  const config = getConfig(defaultLocale);
+  const openGraphLocale = defaultLocale === 'zh' ? 'zh_CN' : 'en_US';
 
   return {
     title: {

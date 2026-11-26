@@ -66,7 +66,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const pageConfig = getPageConfig(slug) as BasePageConfig | null;
+  const { defaultLocale } = getRuntimeI18nConfig(getConfig().i18n);
+  const pageConfig = getPageConfig(slug, defaultLocale) as BasePageConfig | null;
 
   if (!pageConfig) {
     return {};
