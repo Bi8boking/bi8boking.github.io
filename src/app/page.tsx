@@ -134,6 +134,7 @@ function loadPageDataForLocale(locale: string | undefined): HomePageLocaleData {
     social: localeConfig.social,
     features: localeConfig.features,
     enableOnePageMode,
+    homeColumns: Object.fromEntries(localeConfig.navigation.map(item => [item.target, item.home_column])),
     interestHeading: aboutConfig?.profile?.interest_heading,
     researchInterests: aboutConfig?.profile?.research_interests,
     pagesToShow,

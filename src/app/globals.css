@@ -7,15 +7,18 @@
 :root,
 .light {
   /* Light theme colors */
-  --background: #f7f9fb;
-  --foreground: #14283a;
-  
-  --primary: #163047;
-  --primary-light: #34536c;
-  --primary-dark: #102333;
-  --accent: #186b63;
-  --accent-light: #22867a;
-  --accent-dark: #105752;
+  --background: #f3f5f7;
+  --foreground: #263241;
+  --panel: #ffffff;
+  --panel-border: #e2e7ed;
+  --navbar: #303a46;
+
+  --primary: #172434;
+  --primary-light: #34465b;
+  --primary-dark: #102033;
+  --accent: #245c99;
+  --accent-light: #326faf;
+  --accent-dark: #1b497f;
   
   /* Neutral colors */
   --neutral-50: #f8fafc;
@@ -135,16 +138,19 @@ html[data-locale^="zh"] {
 
 /* Dark mode styles */
 .dark {
-  --background: #101b26;
-  --foreground: #f8fafc;
+  --background: #111822;
+  --foreground: #dce5ef;
+  --panel: #1b2532;
+  --panel-border: #344153;
+  --navbar: #222c39;
   
   /* Adjust colors for dark mode */
   --primary: #f8fafc;
   --primary-light: #e2e8f0;
   --primary-dark: #cbd5e1;
-  --accent: #82dbce;
-  --accent-light: #a6efe3;
-  --accent-dark: #5dc5b6;
+  --accent: #9cc7fa;
+  --accent-light: #b6d6fc;
+  --accent-dark: #7dafed;
   
   /* Dark mode glass effect */
   --glass-bg: rgba(15, 23, 42, 0.8);
@@ -173,6 +179,18 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.site-container {
+  width: min(calc(100% - 2rem), 69.5rem);
+  margin-inline: auto;
+}
+
+.surface-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 0.875rem;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 6%);
 }
 
 /* Typography utilities */
@@ -232,15 +250,4 @@ body {
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: var(--neutral-500);
-}
-
-/* Card background utility */
-.card-bg {
-  background-color: #ffffff;
-}
-
-.dark .card-bg {
-  background-color: #172737;
-  /* Soften card borders in dark mode only */
-  border-color: rgba(148, 163, 184, 0.24);
 }

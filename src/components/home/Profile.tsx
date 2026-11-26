@@ -106,33 +106,35 @@ export default function Profile({ author, social, features, interestHeading, res
     ];
 
     return (
-        <aside className="card-bg rounded-2xl border border-neutral-200 px-5 py-7 shadow-sm lg:sticky lg:top-28 lg:px-6">
-            <div className="mb-5 flex flex-col items-center justify-center gap-4 min-[360px]:flex-row lg:flex-col">
-                <div className="aspect-[3/4] w-24 shrink-0 overflow-hidden rounded-xl ring-1 ring-neutral-200 lg:w-32">
-                    <Image
-                        src={author.avatar}
-                        alt={author.name}
-                        width={128}
-                        height={171}
-                        className="h-full w-full object-cover object-top"
-                        priority
-                    />
-                </div>
-                <div className="min-w-0 text-center min-[360px]:max-lg:text-left">
-                    <h1 className="mb-2 text-3xl font-serif font-bold tracking-tight text-primary lg:text-4xl">
+        <aside className="surface-card grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-4 self-start p-5 sm:p-6 lg:sticky lg:top-20 lg:block lg:text-center">
+            <div className="flex min-w-0 items-center gap-4 lg:block">
+                {author.avatar && (
+                    <div className="aspect-[3/4] w-20 shrink-0 overflow-hidden rounded-lg lg:mx-auto lg:mb-4 lg:w-36">
+                        <Image
+                            src={author.avatar}
+                            alt={author.name}
+                            width={144}
+                            height={192}
+                            className="h-full w-full object-cover object-top"
+                            priority
+                        />
+                    </div>
+                )}
+                <div className="min-w-0">
+                    <h1 className="text-3xl font-semibold leading-tight tracking-tight text-primary">
                         {author.name}
                     </h1>
-                    <p className="mb-1 text-pretty text-sm font-medium text-accent lg:text-base">
+                    <p className="mt-2 text-sm font-medium text-primary">
                         {author.title}
                     </p>
-                    <p className="text-base text-neutral-600">
+                    <p className="mt-1 text-sm text-neutral-600">
                         {author.institution}
                     </p>
                 </div>
             </div>
 
             {/* Contact Links */}
-            <div className="relative mb-5 flex flex-wrap justify-center gap-3 px-2">
+            <div className="relative flex flex-wrap items-center justify-end gap-2 lg:mt-5 lg:justify-center">
                 {socialLinks.map((link) => {
                     const IconComponent = link.icon;
                     if (link.isLocation) {
@@ -289,7 +291,7 @@ export default function Profile({ author, social, features, interestHeading, res
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-md border border-neutral-200 px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                            className="inline-flex items-center gap-2 rounded-md border border-neutral-200 px-3 py-2 text-sm font-medium text-accent transition-colors hover:border-accent/40 hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                             aria-label={link.name}
                         >
                             <IconComponent aria-hidden="true" className="h-4 w-4" />
@@ -301,11 +303,11 @@ export default function Profile({ author, social, features, interestHeading, res
 
             {/* Research Interests */}
             {researchInterests && researchInterests.length > 0 && (
-                <div className="border-t border-neutral-200 pt-4 text-center">
-                    <h2 className="mb-2 text-sm font-semibold text-primary">{interestHeading || messages.profile.researchInterests}</h2>
-                    <ul className="flex flex-wrap justify-center gap-2 text-sm text-neutral-700">
+                <div className="col-span-2 border-t border-neutral-200 pt-4 lg:mt-5">
+                    <h2 className="mb-2.5 text-sm font-semibold text-primary">{interestHeading || messages.profile.researchInterests}</h2>
+                    <ul className="flex flex-wrap gap-1.5 text-sm text-neutral-700 lg:justify-center">
                         {researchInterests.map((interest) => (
-                            <li key={interest} className="rounded-md bg-neutral-100 px-2.5 py-1">{interest}</li>
+                            <li key={interest} className="rounded-md bg-neutral-100 px-2 py-1">{interest}</li>
                         ))}
                     </ul>
                 </div>
@@ -313,7 +315,7 @@ export default function Profile({ author, social, features, interestHeading, res
 
             {/* Like Button */}
             {features.enable_likes && (
-                <div className="flex justify-center">
+                <div className="col-span-2 flex justify-center lg:mt-4">
                     <div className="relative">
                         <motion.button
                             onClick={handleLike}

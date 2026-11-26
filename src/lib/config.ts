@@ -14,7 +14,7 @@ export interface SiteConfig {
     name: string;
     title: string;
     institution: string;
-    avatar: string;
+    avatar?: string;
   };
   social: {
     email?: string;
@@ -36,6 +36,7 @@ export interface SiteConfig {
     type: 'section' | 'page' | 'link';
     target: string;
     href: string;
+    home_column?: 'left' | 'right';
   }>;
   sections?: Array<{
     id: string;

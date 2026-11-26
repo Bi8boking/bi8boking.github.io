@@ -4,7 +4,9 @@ export interface LocaleMessages {
     copyToClipboard: string;
   };
   navigation: {
+    menu: string;
     openMainMenu: string;
+    closeMainMenu: string;
   };
   theme: {
     system: string;
@@ -54,7 +56,9 @@ const en: LocaleMessages = {
     copyToClipboard: 'Copy to clipboard',
   },
   navigation: {
+    menu: 'Menu',
     openMainMenu: 'Open main menu',
+    closeMainMenu: 'Close main menu',
   },
   theme: {
     system: 'System',
@@ -104,7 +108,9 @@ const zh: LocaleMessages = {
     copyToClipboard: '复制到剪贴板',
   },
   navigation: {
+    menu: '菜单',
     openMainMenu: '打开主菜单',
+    closeMainMenu: '关闭主菜单',
   },
   theme: {
     system: '跟随系统',

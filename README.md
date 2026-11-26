@@ -2,14 +2,14 @@
 
 [访问主页](https://wangqiyue26-lab.github.io/)
 
-主页基于 [PRISM](https://github.com/xyjoey/PRISM)，展示教育经历、项目与实习、专业技能、社会实践和荣誉奖项。
+主页基于 [PRISM](https://github.com/xyjoey/PRISM)，布局参考 [Shuang Zeng 的主页](https://stevezs315.github.io/)和 [academic-homepage](https://github.com/luost26/academic-homepage)。
 
 ## 更新主页
 
 - `content/config.toml` 管理个人资料和导航。
 - `content/bio.md` 和 `content/skills.md` 分别维护简介和技能。
 - `content/education.toml`、`projects.toml`、`experience.toml`、`awards.toml` 分别维护教育、项目、实践和荣誉。
-- `public/portrait.png` 是主页头像。
+- 导航项可用 `home_column = "left"` 或 `home_column = "right"` 将对应的卡片栏目放进首页双栏。
 
 ## 本地预览
 

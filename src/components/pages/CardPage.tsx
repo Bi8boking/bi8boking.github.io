@@ -33,11 +33,11 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
     const Heading = embedded ? 'h2' : 'h1';
 
     return (
-        <div>
-            <div className={embedded ? "mb-4" : "mb-8"}>
-                <Heading className={`${embedded ? "text-2xl" : "text-4xl"} font-serif font-bold text-primary mb-4`}>{config.title}</Heading>
+        <div className={embedded ? undefined : "surface-card p-6 sm:p-9"}>
+            <div className={embedded ? "mb-3" : "mb-6"}>
+                <Heading className={`${embedded ? "text-xl" : "text-3xl"} font-semibold tracking-tight text-primary`}>{config.title}</Heading>
                 {config.description && (
-                    <div className={`${embedded ? "text-base" : "text-lg"} text-neutral-600 dark:text-neutral-500 max-w-2xl leading-relaxed`}>
+                    <div className="mt-2 max-w-2xl text-base leading-relaxed text-neutral-600">
                         <ReactMarkdown components={markdownComponents}>
                             {config.description}
                         </ReactMarkdown>
@@ -45,50 +45,58 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                 )}
             </div>
 
-            <div className={`grid ${embedded ? "gap-4" : "gap-6"}`}>
+            <div className="divide-y divide-neutral-200/75">
                 {config.items.map((item, index) => (
-                    <article
-                        key={index}
-                        className="card-bg rounded-xl border border-neutral-200 p-4 shadow-sm sm:p-5"
-                    >
-                        <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                            <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
-                            {item.date && (
-                                <span className="shrink-0 whitespace-nowrap rounded-md bg-neutral-100 px-2.5 py-1 text-sm font-medium tabular-nums text-neutral-600">
-                                    {item.date}
-                                </span>
+                    <article key={index} className="flex items-start gap-2.5 py-3 first:pt-0 last:pb-0">
+                        {item.image && (
+                            <Image
+                                src={item.image}
+                                alt=""
+                                width={28}
+                                height={28}
+                                className="mt-0.5 size-7 shrink-0 rounded-full bg-white object-contain"
+                            />
+                        )}
+                        <div className="min-w-0 flex-1">
+                            <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
+                                <h3 className="text-base font-semibold leading-relaxed text-primary">{item.title}</h3>
+                                {item.date && (
+                                    <span className="ml-auto shrink-0 whitespace-nowrap text-sm tabular-nums text-neutral-600">
+                                        {item.date}
+                                    </span>
+                                )}
+                            </div>
+                            {item.subtitle && (
+                                <p className="mt-1 text-sm leading-relaxed text-neutral-600">
+                                    {item.subtitle_icon && (
+                                        <Image
+                                            src={item.subtitle_icon}
+                                            alt=""
+                                            width={24}
+                                            height={24}
+                                            className="mr-2 inline-block size-6 rounded-full bg-white object-contain align-middle"
+                                        />
+                                    )}
+                                    {item.subtitle}
+                                </p>
+                            )}
+                            {item.content && (
+                                <div className="mt-1.5 text-base leading-relaxed text-foreground">
+                                    <ReactMarkdown components={markdownComponents}>
+                                        {item.content}
+                                    </ReactMarkdown>
+                                </div>
+                            )}
+                            {item.tags && (
+                                <div className="mt-3 flex flex-wrap gap-2">
+                                    {item.tags.map(tag => (
+                                        <span key={tag} className="rounded bg-neutral-100 px-2 py-1 text-sm text-neutral-600">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
                             )}
                         </div>
-                        {item.subtitle && (
-                            <p className="text-sm font-medium text-accent">
-                                {item.subtitle_icon && (
-                                    <Image
-                                        src={item.subtitle_icon}
-                                        alt=""
-                                        width={24}
-                                        height={24}
-                                        className="mr-2 inline-block size-6 rounded-full bg-white object-contain align-middle"
-                                    />
-                                )}
-                                {item.subtitle}
-                            </p>
-                        )}
-                        {item.content && (
-                            <div className="mt-3 text-base leading-relaxed text-neutral-700">
-                                <ReactMarkdown components={markdownComponents}>
-                                    {item.content}
-                                </ReactMarkdown>
-                            </div>
-                        )}
-                        {item.tags && (
-                            <div className="flex flex-wrap gap-2 mt-4">
-                                {item.tags.map(tag => (
-                                    <span key={tag} className="text-xs text-neutral-500 bg-neutral-50 dark:bg-neutral-800/50 px-2 py-1 rounded border border-neutral-100 dark:border-neutral-800">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
                     </article>
                 ))}
             </div>

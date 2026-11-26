@@ -11,6 +11,7 @@ import type { SiteConfig } from '@/lib/config';
 import { Publication } from '@/types/publication';
 import { CardPageConfig, PublicationPageConfig, TextPageConfig } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
+import { cn } from '@/lib/utils';
 
 interface SectionConfig {
   id: string;
@@ -35,6 +36,7 @@ export interface HomePageLocaleData {
   social: SiteConfig['social'];
   features: SiteConfig['features'];
   enableOnePageMode?: boolean;
+  homeColumns: Record<string, SiteConfig['navigation'][number]['home_column']>;
   interestHeading?: string;
   researchInterests?: string[];
   pagesToShow: PageData[];
@@ -54,76 +56,79 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
     return null;
   }
 
-  return (
-    <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-8 sm:py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
-        <div className="lg:col-span-1">
-          <Profile
-            author={data.author}
-            social={data.social}
-            features={data.features}
-            interestHeading={data.interestHeading}
-            researchInterests={data.researchInterests}
-          />
-        </div>
+  const columnPages = data.pagesToShow.filter(page => page.type === 'card' && data.homeColumns[page.id]);
+  const leftPages = columnPages.filter(page => data.homeColumns[page.id] === 'left');
+  const rightPages = columnPages.filter(page => data.homeColumns[page.id] === 'right');
+  const hasBothColumns = leftPages.length > 0 && rightPages.length > 0;
+  const { enableOnePageMode } = data;
 
-        <div className="min-w-0 lg:col-span-2 space-y-11 sm:space-y-14">
-          {data.pagesToShow.map((page) => (
-            <section key={page.id} id={page.id} className="scroll-mt-24 space-y-8">
-              {page.type === 'about' && page.sections.map((section: SectionConfig) => {
-                switch (section.type) {
-                  case 'markdown':
-                    return (
-                      <About
-                        key={section.id}
-                        content={section.content || ''}
-                        title={section.title}
-                      />
-                    );
-                  case 'publications':
-                    return (
-                      <SelectedPublications
-                        key={section.id}
-                        publications={section.publications || []}
-                        title={section.title}
-                        enableOnePageMode={data.enableOnePageMode}
-                      />
-                    );
-                  case 'list':
-                    return (
-                      <News
-                        key={section.id}
-                        items={section.items || []}
-                        title={section.title}
-                      />
-                    );
-                  default:
-                    return null;
-                }
-              })}
-              {page.type === 'publication' && (
-                <PublicationsList
-                  config={page.config}
-                  publications={page.publications}
-                  embedded={true}
+  function renderPage(page: PageData) {
+    return (
+      <section
+        key={page.id}
+        id={page.id}
+        className={cn(
+          'min-w-0 scroll-mt-20 space-y-5',
+          page.type === 'card' && !columnPages.includes(page) && 'surface-card p-6 sm:p-9',
+        )}
+      >
+        {page.type === 'about' && page.sections.map((section) => {
+          switch (section.type) {
+            case 'markdown':
+              return <About key={section.id} content={section.content || ''} title={section.title} />;
+            case 'publications':
+              return (
+                <SelectedPublications
+                  key={section.id}
+                  publications={section.publications || []}
+                  title={section.title}
+                  enableOnePageMode={enableOnePageMode}
                 />
+              );
+            case 'list':
+              return <News key={section.id} items={section.items || []} title={section.title} />;
+            default:
+              return null;
+          }
+        })}
+        {page.type === 'publication' && (
+          <PublicationsList config={page.config} publications={page.publications} embedded />
+        )}
+        {page.type === 'text' && <TextPage config={page.config} content={page.content} embedded />}
+        {page.type === 'card' && <CardPage config={page.config} embedded />}
+      </section>
+    );
+  }
+
+  return (
+    <div className="site-container grid gap-5 py-6 sm:py-7 lg:grid-cols-[15.75rem_minmax(0,1fr)] lg:gap-7">
+      <Profile
+        author={data.author}
+        social={data.social}
+        features={data.features}
+        interestHeading={data.interestHeading}
+        researchInterests={data.researchInterests}
+      />
+      <div className="min-w-0 space-y-5">
+        {data.pagesToShow.map(page => {
+          if (!columnPages.includes(page)) return renderPage(page);
+          if (page !== columnPages[0]) return null;
+
+          return (
+            <div key={page.id} className={cn('surface-card grid gap-7 p-6 sm:p-8', hasBothColumns && 'md:grid-cols-2 md:gap-0')}>
+              {leftPages.length > 0 && (
+                <div className={cn('min-w-0 space-y-7', hasBothColumns && 'md:pr-6 lg:pr-8')}>
+                  {leftPages.map(renderPage)}
+                </div>
               )}
-              {page.type === 'text' && (
-                <TextPage
-                  config={page.config}
-                  content={page.content}
-                  embedded={true}
-                />
+              {rightPages.length > 0 && (
+                <div className={cn('min-w-0 space-y-7', hasBothColumns && 'border-t border-neutral-200 pt-7 md:border-t-0 md:border-l md:pt-0 md:pl-6 lg:pl-8')}>
+                  {rightPages.map(renderPage)}
+                </div>
               )}
-              {page.type === 'card' && (
-                <CardPage
-                  config={page.config}
-                  embedded={true}
-                />
-              )}
-            </section>
-          ))}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

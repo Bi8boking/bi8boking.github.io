@@ -26,8 +26,8 @@ export default function LanguageToggle({ i18n }: LanguageToggleProps) {
 
   if (!mounted) {
     return (
-      <div className="flex items-center justify-center w-14 h-10 rounded-lg border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] bg-background dark:bg-neutral-800">
-        <div className="w-6 h-4 rounded bg-neutral-300 animate-pulse" />
+      <div className="flex h-9 w-14 items-center justify-center rounded-md border border-white/20" aria-hidden="true">
+        <div className="h-3.5 w-6 rounded bg-white/25" />
       </div>
     );
   }
@@ -43,13 +43,7 @@ export default function LanguageToggle({ i18n }: LanguageToggleProps) {
         type="button"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          'flex items-center justify-center gap-1 px-2 h-10 rounded-lg',
-          'border border-neutral-200 bg-background hover:bg-neutral-50',
-          'dark:border-[rgba(148,163,184,0.24)] dark:bg-neutral-800 dark:hover:bg-neutral-700',
-          'transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50',
-          'text-neutral-600 hover:text-primary dark:text-neutral-400 dark:hover:text-white'
-        )}
+        className="flex h-9 items-center justify-center gap-1 rounded-md border border-white/20 px-2 text-slate-100 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200"
         title={currentLabel}
       >
         <LanguageIcon className="h-4 w-4" />

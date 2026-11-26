@@ -13,9 +13,9 @@ export default function About({ content, title }: AboutProps) {
     const resolvedTitle = title || messages.home.about;
 
     return (
-        <div>
-            <h2 className="text-2xl font-serif font-bold text-primary mb-4">{resolvedTitle}</h2>
-            <div className="text-pretty text-base text-neutral-700 leading-[1.9]">
+        <div className="surface-card p-6 sm:p-9">
+            <h2 className="mb-4 text-[1.65rem] font-semibold leading-tight tracking-tight text-primary">{resolvedTitle}</h2>
+            <div className="text-pretty text-base leading-[1.85] text-foreground">
                 <ReactMarkdown
                     components={{
                         h1: ({ children }) => <h1 className="text-3xl font-serif font-bold text-primary mt-8 mb-4">{children}</h1>,

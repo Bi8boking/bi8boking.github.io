@@ -8,7 +8,6 @@ last_updated = "2026 年 11 月 26 日"
 name = "王启月"
 title = "硕士研究生"
 institution = "北京信息科技大学"
-avatar = "/portrait.png"
 
 [social]
 github = "https://github.com/wangqiyue26-lab"
@@ -33,27 +32,31 @@ title = "教育"
 type = "page"
 target = "education"
 href = "/education"
+home_column = "left"
 
 [[navigation]]
 title = "项目"
 type = "page"
 target = "projects"
 href = "/projects"
-
-[[navigation]]
-title = "技能"
-type = "page"
-target = "skills"
-href = "/skills"
+home_column = "left"
 
 [[navigation]]
 title = "荣誉"
 type = "page"
 target = "awards"
 href = "/awards"
+home_column = "right"
 
 [[navigation]]
 title = "实践"
 type = "page"
 target = "experience"
 href = "/experience"
+home_column = "right"
+
+[[navigation]]
+title = "技能"
+type = "page"
+target = "skills"
+href = "/skills"

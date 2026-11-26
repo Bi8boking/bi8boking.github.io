@@ -48,8 +48,8 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] bg-background dark:bg-neutral-800">
-        <div className="w-4 h-4 rounded-full bg-neutral-300 animate-pulse" />
+      <div className="flex size-9 items-center justify-center rounded-md border border-white/20" aria-hidden="true">
+        <div className="size-3.5 rounded-full bg-white/25" />
       </div>
     );
   }
@@ -69,13 +69,7 @@ export function ThemeToggle() {
           const next = order[(index + 1) % order.length];
           setTheme(next);
         }}
-        className={cn(
-          'flex items-center justify-center w-10 h-10 rounded-lg',
-          'border border-neutral-200 bg-background hover:bg-neutral-50',
-          'dark:border-[rgba(148,163,184,0.24)] dark:bg-neutral-800 dark:hover:bg-accent/10',
-          'transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50',
-          'text-neutral-600 hover:text-primary dark:text-neutral-500 dark:hover:text-accent'
-        )}
+        className="flex size-9 items-center justify-center rounded-md border border-white/20 text-slate-100 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200"
         title={`${messages.theme.currentTheme}: ${currentTheme.label}. ${messages.theme.cycleTheme}.`}
       >
         <motion.div
