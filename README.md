@@ -1,6 +1,6 @@
 # 王启月的个人主页
 
-[访问主页](https://wangqiyue26-lab.github.io/)
+[访问主页](https://bi8boking.github.io/)
 
 主页基于 [PRISM](https://github.com/xyjoey/PRISM)，布局参考 [Shuang Zeng 的主页](https://stevezs315.github.io/)和 [academic-homepage](https://github.com/luost26/academic-homepage)。
 
