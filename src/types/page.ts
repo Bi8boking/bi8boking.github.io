@@ -20,6 +20,7 @@ export interface CardItem {
     subtitle_icon?: string;
     date?: string;
     content?: string;
+    details?: string;
     tags?: string[];
     link?: string;
     image?: string;
@@ -28,4 +29,5 @@ export interface CardItem {
 export interface CardPageConfig extends BasePageConfig {
     type: 'card';
     items: CardItem[];
+    details_label?: string;
 }

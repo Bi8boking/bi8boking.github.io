@@ -6,8 +6,8 @@ import { CardPageConfig } from '@/types/page';
 
 const markdownComponents = {
     p: ({ children }: React.ComponentProps<'p'>) => <p className="mb-3 last:mb-0">{children}</p>,
-    ul: ({ children }: React.ComponentProps<'ul'>) => <ul className="list-disc list-inside mb-3 space-y-1">{children}</ul>,
-    ol: ({ children }: React.ComponentProps<'ol'>) => <ol className="list-decimal list-inside mb-3 space-y-1">{children}</ol>,
+    ul: ({ children }: React.ComponentProps<'ul'>) => <ul className="mb-3 list-outside list-disc space-y-2 pl-5">{children}</ul>,
+    ol: ({ children }: React.ComponentProps<'ol'>) => <ol className="mb-3 list-outside list-decimal space-y-2 pl-5">{children}</ol>,
     li: ({ children }: React.ComponentProps<'li'>) => <li className="mb-1">{children}</li>,
     a: ({ ...props }) => (
         <a
@@ -86,6 +86,18 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                         {item.content}
                                     </ReactMarkdown>
                                 </div>
+                            )}
+                            {item.details && (
+                                <details open={!embedded} className="mt-2">
+                                    <summary className="w-fit cursor-pointer rounded-sm py-1 text-sm font-medium text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                                        {config.details_label ?? 'Details'}
+                                    </summary>
+                                    <div className="mt-2 text-base leading-relaxed text-foreground">
+                                        <ReactMarkdown components={markdownComponents}>
+                                            {item.details}
+                                        </ReactMarkdown>
+                                    </div>
+                                </details>
                             )}
                             {item.tags && (
                                 <div className="mt-3 flex flex-wrap gap-2">
