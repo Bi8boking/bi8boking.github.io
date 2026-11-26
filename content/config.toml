@@ -43,6 +43,13 @@ href = "/education"
 home_column = "left"
 
 [[navigation]]
+title = "荣誉"
+type = "page"
+target = "awards"
+href = "/awards"
+home_column = "left"
+
+[[navigation]]
 title = "项目"
 type = "page"
 target = "projects"
@@ -50,18 +57,11 @@ href = "/projects"
 home_column = "left"
 
 [[navigation]]
-title = "荣誉"
-type = "page"
-target = "awards"
-href = "/awards"
-home_column = "right"
-
-[[navigation]]
 title = "技能"
 type = "page"
 target = "skills"
 href = "/skills"
-home_column = "right"
+home_column = "left"
 
 [[navigation]]
 title = "实践"
