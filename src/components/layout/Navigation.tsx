@@ -97,13 +97,13 @@ export default function Navigation({
     <Disclosure as="nav" aria-label={messages.navigation.menu} className="fixed inset-x-0 top-0 z-50 bg-[var(--navbar)] text-white shadow-sm">
       {({ open }) => (
         <>
-          <div className="site-container flex h-14 items-center justify-between gap-4">
-            <Link href="/" className="shrink-0 rounded-sm text-lg font-semibold tracking-tight text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200">
+          <div className="site-container flex h-14 items-center justify-between gap-3">
+            <Link href="/" className="min-w-0 truncate rounded-sm text-lg font-semibold tracking-tight text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200">
               {effectiveTitle}
             </Link>
 
-            <div className="flex items-center gap-2">
-              <ul className="hidden items-center gap-0.5 md:flex">
+            <div className="flex shrink-0 items-center gap-2">
+              <ul className="hidden items-center gap-0.5 lg:flex">
                 {effectiveItems.map(item => (
                   <li key={item.target}>
                     <Link {...linkProps(item)}>{item.title}</Link>
@@ -114,15 +114,15 @@ export default function Navigation({
               <ThemeToggle />
               <DisclosureButton
                 aria-label={open ? messages.navigation.closeMainMenu : messages.navigation.openMainMenu}
-                className="flex h-9 items-center gap-1.5 rounded-md border border-white/20 px-2.5 text-sm font-medium text-slate-100 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200 md:hidden"
+                className="flex h-9 items-center gap-1.5 rounded-md border border-white/20 px-2.5 text-sm font-medium text-slate-100 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200 lg:hidden"
               >
                 {open ? <XMarkIcon className="size-4" aria-hidden="true" /> : <Bars3Icon className="size-4" aria-hidden="true" />}
-                {messages.navigation.menu}
+                <span className="hidden min-[360px]:inline">{messages.navigation.menu}</span>
               </DisclosureButton>
             </div>
           </div>
 
-          <DisclosurePanel className="border-t border-white/10 md:hidden">
+          <DisclosurePanel className="border-t border-white/10 lg:hidden">
             <ul className="site-container space-y-1 py-2">
               {effectiveItems.map(item => (
                 <li key={item.target}>

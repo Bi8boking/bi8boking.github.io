@@ -1,0 +1,3 @@
+- **Signals and hardware** · Signal processing and algorithms, hardware, and sensors
+- **Design and programming** · SolidWorks, MATLAB, Mexwell, Python, and C
+- **English** · CET-4

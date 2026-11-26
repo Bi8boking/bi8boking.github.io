@@ -1,0 +1,12 @@
+type = "about"
+title = "About Me"
+
+[profile]
+interest_heading = "Technical Interests"
+research_interests = ["Signal processing", "Sensor technology", "Intelligent detection"]
+
+[[sections]]
+id = "bio"
+type = "markdown"
+source = "bio.md"
+title = "About Me"

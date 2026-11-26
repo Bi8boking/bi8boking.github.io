@@ -17,9 +17,17 @@ enable_likes = false
 enable_one_page_mode = true
 
 [i18n]
-enabled = false
-locales = ["zh"]
+enabled = true
+locales = ["zh", "en"]
 default_locale = "zh"
+mode = "fixed"
+fixed_locale = "zh"
+persist = true
+switcher = true
+
+[i18n.labels]
+zh = "中文"
+en = "English"
 
 [[navigation]]
 title = "简介"
@@ -49,14 +57,14 @@ href = "/awards"
 home_column = "right"
 
 [[navigation]]
-title = "实践"
-type = "page"
-target = "experience"
-href = "/experience"
-home_column = "right"
-
-[[navigation]]
 title = "技能"
 type = "page"
 target = "skills"
 href = "/skills"
+home_column = "right"
+
+[[navigation]]
+title = "实践"
+type = "page"
+target = "experience"
+href = "/experience"

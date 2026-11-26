@@ -4,7 +4,7 @@ details_label = "具体工作"
 
 [[items]]
 title = "核磁共振测井探头磁场仿真"
-subtitle = "青檬艾柯有限公司 · 实习"
+subtitle = "北京青檬艾柯有限公司 · 实习"
 date = "2026.11"
 content = "我使用 Ansys Maxwell 完成测井探头的 B₀ 静磁场和 B₁ 射频场仿真，并联合计算相对敏感区，比较扰流天线通电前后的周向响应。"
 details = """
@@ -16,7 +16,7 @@ details = """
 
 [[items]]
 title = "单边核磁共振仪的建模与磁场仿真"
-subtitle = "青檬艾柯有限公司 · 实习"
+subtitle = "北京青檬艾柯有限公司 · 实习"
 date = "2026.11 · 进行中"
 content = "我搭建了单边 NMR 探头的四磁块阵列与三匝线圈模型，完成首轮 B₀ 求解、共振位置分析和 B₁ 初算。正式射频场求解与三维敏感区评估正在推进。"
 details = """

@@ -10,11 +10,13 @@ import {
   CardPageConfig,
 } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
+import { useLocalizedPageTitle } from '@/lib/i18n/useLocalizedPageTitle';
 
-export type DynamicPageLocaleData =
+export type DynamicPageLocaleData = { siteTitle: string } & (
   | { type: 'publication'; config: PublicationPageConfig; publications: Publication[] }
   | { type: 'text'; config: TextPageConfig; content: string }
-  | { type: 'card'; config: CardPageConfig };
+  | { type: 'card'; config: CardPageConfig }
+);
 
 interface DynamicPageClientProps {
   dataByLocale: Record<string, DynamicPageLocaleData>;
@@ -22,9 +24,10 @@ interface DynamicPageClientProps {
 }
 
 export default function DynamicPageClient({ dataByLocale, defaultLocale }: DynamicPageClientProps) {
-  const locale = useLocaleStore((state) => state.locale);
+  const locale = useLocaleStore(state => state.isReady ? state.locale : defaultLocale);
   const fallback = dataByLocale[defaultLocale] || Object.values(dataByLocale)[0];
   const pageData = dataByLocale[locale] || fallback;
+  useLocalizedPageTitle(pageData ? `${pageData.config.title} | ${pageData.siteTitle}` : undefined);
 
   if (!pageData) {
     return null;

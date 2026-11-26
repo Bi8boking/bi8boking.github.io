@@ -13,7 +13,7 @@ export default function TextPage({ config, content, embedded = false }: TextPage
     const Heading = embedded ? 'h2' : 'h1';
 
     return (
-        <div className="surface-card p-6 sm:p-9">
+        <div className={embedded ? undefined : "surface-card p-6 sm:p-9"}>
             <Heading className={`${embedded ? "text-xl" : "text-3xl"} mb-4 font-semibold tracking-tight text-primary`}>{config.title}</Heading>
             {config.description && (
                 <p className={`${embedded ? "text-base" : "text-lg"} text-neutral-600 dark:text-neutral-500 mb-8 max-w-2xl`}>

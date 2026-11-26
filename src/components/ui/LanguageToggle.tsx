@@ -1,9 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { LanguageIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { cn } from '@/lib/utils';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { getMessages } from '@/lib/i18n/messages';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 import type { I18nRuntimeConfig } from '@/types/i18n';
 
@@ -12,87 +10,28 @@ interface LanguageToggleProps {
 }
 
 export default function LanguageToggle({ i18n }: LanguageToggleProps) {
-  const { locale, setLocale } = useLocaleStore();
-  const [mounted, setMounted] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const locale = useLocaleStore(state => state.isReady ? state.locale : i18n.defaultLocale);
+  const setLocale = useLocaleStore(state => state.setLocale);
 
   if (!i18n.enabled || !i18n.switcher || i18n.locales.length <= 1) {
     return null;
   }
 
-  if (!mounted) {
-    return (
-      <div className="flex h-9 w-14 items-center justify-center rounded-md border border-white/20" aria-hidden="true">
-        <div className="h-3.5 w-6 rounded bg-white/25" />
-      </div>
-    );
-  }
-
   const currentLocale = i18n.locales.includes(locale) ? locale : i18n.defaultLocale;
-  const currentLabel = i18n.labels[currentLocale] || currentLocale;
 
   return (
-    <div className="relative">
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        type="button"
-        onMouseDown={(e) => e.preventDefault()}
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex h-9 items-center justify-center gap-1 rounded-md border border-white/20 px-2 text-slate-100 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200"
-        title={currentLabel}
+    <div className="relative shrink-0">
+      <select
+        aria-label={getMessages(currentLocale).navigation.language}
+        value={currentLocale}
+        onChange={event => setLocale(event.target.value)}
+        className="h-9 w-[5.25rem] cursor-pointer appearance-none rounded-md border border-white/20 bg-[var(--navbar)] py-1 pl-2 pr-5 text-sm font-medium text-slate-100 transition-colors hover:border-white/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200"
       >
-        <LanguageIcon className="h-4 w-4" />
-        <span className="text-xs font-medium">{currentLabel}</span>
-        <ChevronDownIcon className="h-3.5 w-3.5" />
-      </motion.button>
-
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: -10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: -10 }}
-          className={cn(
-            'absolute right-0 mt-2 w-36 rounded-lg shadow-lg border',
-            'bg-background border-neutral-200 dark:border-[rgba(148,163,184,0.24)]',
-            'dark:bg-neutral-800 z-50'
-          )}
-        >
-          <div className="py-1">
-            {i18n.locales.map((localeOption) => (
-              <button
-                key={localeOption}
-                onClick={() => {
-                  setLocale(localeOption);
-                  setIsOpen(false);
-                }}
-                className={cn(
-                  'flex items-center justify-between w-full px-3 py-2 text-sm',
-                  'hover:bg-neutral-50 dark:hover:bg-neutral-700',
-                  'transition-colors duration-200',
-                  currentLocale === localeOption
-                    ? 'text-accent bg-accent/10'
-                    : 'text-neutral-700 dark:text-neutral-300'
-                )}
-              >
-                <span>{i18n.labels[localeOption] || localeOption}</span>
-                <span className="text-xs opacity-70">{localeOption.toUpperCase()}</span>
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      )}
-
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+        {i18n.locales.map(option => (
+          <option key={option} value={option} lang={option}>{i18n.labels[option] || option}</option>
+        ))}
+      </select>
+      <ChevronDownIcon aria-hidden="true" className="pointer-events-none absolute top-1/2 right-1.5 size-3.5 -translate-y-1/2 text-slate-200" />
     </div>
   );
 }

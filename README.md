@@ -9,7 +9,8 @@
 - `content/config.toml` 管理个人资料和导航。
 - `content/bio.md` 和 `content/skills.md` 分别维护简介和技能。
 - `content/education.toml`、`projects.toml`、`experience.toml`、`awards.toml` 分别维护教育、项目、实践和荣誉。
-- 导航项可用 `home_column = "left"` 或 `home_column = "right"` 将对应的卡片栏目放进首页双栏。
+- 导航项可用 `home_column = "left"` 或 `home_column = "right"` 将教育、项目、荣誉、技能等栏目放进首页双栏。
+- 中文内容放在 `content/`，英文内容放在 `content_en/` 的同名文件。`content/config.toml` 的 `[i18n]` 管理默认语言。
 
 ## 本地预览
 

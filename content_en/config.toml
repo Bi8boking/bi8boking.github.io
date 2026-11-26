@@ -1,0 +1,49 @@
+[site]
+title = "Qiyue Wang"
+description = "Qiyue Wang's personal homepage. Master's student at Beijing Information Science and Technology University working on signal processing, sensors, and intelligent detection."
+last_updated = "November 26, 2026"
+
+[author]
+name = "Qiyue Wang"
+title = "Master's Student"
+institution = "Beijing Information Science and Technology University"
+
+[[navigation]]
+title = "About"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "Education"
+type = "page"
+target = "education"
+href = "/education"
+home_column = "left"
+
+[[navigation]]
+title = "Projects"
+type = "page"
+target = "projects"
+href = "/projects"
+home_column = "left"
+
+[[navigation]]
+title = "Honors"
+type = "page"
+target = "awards"
+href = "/awards"
+home_column = "right"
+
+[[navigation]]
+title = "Skills"
+type = "page"
+target = "skills"
+href = "/skills"
+home_column = "right"
+
+[[navigation]]
+title = "Experience"
+type = "page"
+target = "experience"
+href = "/experience"

@@ -20,11 +20,14 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
     return null;
   }
 
+  const siteTitle = getConfig(locale).site.title;
+
   if (pageConfig.type === 'publication') {
     const pubConfig = pageConfig as PublicationPageConfig;
     const bibtex = getBibtexContent(pubConfig.source, locale);
     return {
       type: 'publication',
+      siteTitle,
       config: pubConfig,
       publications: parseBibTeX(bibtex, locale),
     };
@@ -35,6 +38,7 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
     const content = getMarkdownContent(textConfig.source, locale);
     return {
       type: 'text',
+      siteTitle,
       config: textConfig,
       content,
     };
@@ -43,6 +47,7 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
   if (pageConfig.type === 'card') {
     return {
       type: 'card',
+      siteTitle,
       config: pageConfig as CardPageConfig,
     };
   }

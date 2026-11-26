@@ -5,6 +5,7 @@ export interface LocaleMessages {
   };
   navigation: {
     menu: string;
+    language: string;
     openMainMenu: string;
     closeMainMenu: string;
   };
@@ -57,6 +58,7 @@ const en: LocaleMessages = {
   },
   navigation: {
     menu: 'Menu',
+    language: 'Language',
     openMainMenu: 'Open main menu',
     closeMainMenu: 'Close main menu',
   },
@@ -109,6 +111,7 @@ const zh: LocaleMessages = {
   },
   navigation: {
     menu: '菜单',
+    language: '切换语言',
     openMainMenu: '打开主菜单',
     closeMainMenu: '关闭主菜单',
   },

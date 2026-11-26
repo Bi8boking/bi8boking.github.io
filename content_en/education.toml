@@ -1,0 +1,15 @@
+type = "card"
+title = "Education"
+
+[[items]]
+title = "Beijing Information Science and Technology University"
+subtitle = "Master's studies in Next-Generation Electronic Information Technology"
+image = "/bistu-emblem.png"
+date = "Sep 2026 – Present"
+
+[[items]]
+title = "Beijing Information Science and Technology University"
+subtitle = "Undergraduate studies in Intelligent Sensing Engineering (Qinxin Experimental Class)"
+image = "/bistu-emblem.png"
+date = "Sep 2022 – Jun 2026"
+content = "Selected coursework includes signals and systems, machine vision, machine learning, sensors and intelligent detection, sensor signal conditioning circuits, and control engineering."

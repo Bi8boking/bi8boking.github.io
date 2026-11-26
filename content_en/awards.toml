@@ -1,0 +1,17 @@
+type = "card"
+title = "Honors and Awards"
+
+[[items]]
+title = "Graduate Academic Scholarship, School of Optoelectronics"
+subtitle = "Third Prize"
+date = "2026"
+
+[[items]]
+title = "Beijing Challenge Cup for Undergraduate Academic and Technological Works"
+subtitle = "Second Prize, Beijing"
+date = "2025"
+
+[[items]]
+title = "Undergraduate Innovation and Entrepreneurship Training Program"
+subtitle = "Municipal Excellence Award, Beijing"
+date = "2025"

@@ -1,0 +1,14 @@
+type = "card"
+title = "Community and Teaching Experience"
+
+[[items]]
+title = "Local Government and Community Service"
+subtitle = "Jiayuguan Municipal Bureau of Agriculture and Rural Affairs and Xiongguan Subdistrict, Gansu"
+date = "Jul 2023 – Aug 2025"
+content = "I helped draft official documents and supported science outreach. I organized cultural and sports activities, agricultural product exhibitions and sales events, and took part in volunteer service."
+
+[[items]]
+title = "Primary School Teaching and Student Activities"
+subtitle = "Beijing Zhongyu Qizhi Education Technology Co., Ltd."
+date = "Mar 2023 – Jun 2024"
+content = "I taught classes and organized student activities at schools including the Primary School Affiliated with Tsinghua University, the Primary School Affiliated with China Agricultural University, and Zhongguancun No. 1 Primary School."

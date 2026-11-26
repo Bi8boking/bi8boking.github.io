@@ -11,6 +11,7 @@ import type { SiteConfig } from '@/lib/config';
 import { Publication } from '@/types/publication';
 import { CardPageConfig, PublicationPageConfig, TextPageConfig } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
+import { useLocalizedPageTitle } from '@/lib/i18n/useLocalizedPageTitle';
 import { cn } from '@/lib/utils';
 
 interface SectionConfig {
@@ -32,6 +33,7 @@ type PageData =
   | { type: 'card'; id: string; config: CardPageConfig };
 
 export interface HomePageLocaleData {
+  siteTitle: string;
   author: SiteConfig['author'];
   social: SiteConfig['social'];
   features: SiteConfig['features'];
@@ -48,15 +50,18 @@ interface HomePageClientProps {
 }
 
 export default function HomePageClient({ dataByLocale, defaultLocale }: HomePageClientProps) {
-  const locale = useLocaleStore((state) => state.locale);
+  const locale = useLocaleStore(state => state.isReady ? state.locale : defaultLocale);
   const fallback = dataByLocale[defaultLocale] || Object.values(dataByLocale)[0];
   const data = dataByLocale[locale] || fallback;
+  useLocalizedPageTitle(data?.siteTitle);
 
   if (!data) {
     return null;
   }
 
-  const columnPages = data.pagesToShow.filter(page => page.type === 'card' && data.homeColumns[page.id]);
+  const columnPages = data.pagesToShow.filter(page =>
+    (page.type === 'card' || page.type === 'text') && data.homeColumns[page.id],
+  );
   const leftPages = columnPages.filter(page => data.homeColumns[page.id] === 'left');
   const rightPages = columnPages.filter(page => data.homeColumns[page.id] === 'right');
   const hasBothColumns = leftPages.length > 0 && rightPages.length > 0;
@@ -69,7 +74,7 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
         id={page.id}
         className={cn(
           'min-w-0 scroll-mt-20 space-y-5',
-          page.type === 'card' && !columnPages.includes(page) && 'surface-card p-6 sm:p-9',
+          (page.type === 'card' || page.type === 'text') && !columnPages.includes(page) && 'surface-card p-6 sm:p-9',
         )}
       >
         {page.type === 'about' && page.sections.map((section) => {

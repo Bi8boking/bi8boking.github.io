@@ -1,0 +1,38 @@
+type = "card"
+title = "Projects and Internships"
+details_label = "Work details"
+
+[[items]]
+title = "Magnetic Field Simulation for an NMR Logging Probe"
+subtitle = "Beijing Limecho Technology Co., Ltd. · Internship"
+date = "Nov 2026"
+content = "I simulated the B₀ static magnetic field and the B₁ radiofrequency field of an NMR logging probe in Ansys Maxwell. I combined the fields to calculate the relative sensitivity region and compare the circumferential response with and without spoiler-antenna excitation."
+details = """
+- **Probe modeling and magnetostatic simulation.** I organized the main magnets, end magnets, and soft-magnetic components and rebuilt the fiberglass outer housing. After checking materials and magnetization directions, I entered the nonlinear B–H curve for the soft-magnetic material and set up the external domain and adaptive mesh. The magnetostatic solve met its convergence criterion.
+- **Static field checks.** I exported longitudinal field maps, vector plots, and axial magnetic flux density profiles at several offsets and azimuths. I compared the central plateau and end roll-off and checked how sampling direction affected the profiles.
+- **RF field comparison.** I connected the main antenna and feedline as a continuous conductor and checked the current paths of the main and spoiler antennas. Using the same geometry and mesh, I compared main-antenna-only and dual-circuit excitation, extracted complex B₁ components on a common cross-section, and calculated the co-rotating field component that excites proton spins.
+- **Combined sensitivity analysis.** For the 575 kHz simulation, I aligned the B₀ and B₁ fields on a common cross-section, used the Larmor frequency to identify the resonance band, and applied excitation and reception weights. I normalized both cases to the same reference and plotted sensitivity maps, angular responses, and sector-by-sector attenuation. The results showed that spoiler excitation suppressed the two sides of the cross-section by different amounts.
+"""
+
+[[items]]
+title = "Single-Sided NMR Instrument Modeling and Field Simulation"
+subtitle = "Beijing Limecho Technology Co., Ltd. · Internship"
+date = "Nov 2026 · In progress"
+content = "I modeled the four-magnet array and three-turn coil for a single-sided NMR probe, ran the first B₀ simulation, located the resonance region, and estimated B₁. The finite-element RF solve and three-dimensional sensitivity analysis are in progress."
+details = """
+- **Three-dimensional magnet modeling.** In Ansys Maxwell, I modeled a modified U-shaped magnet assembly with four neodymium magnets and a parameterized pure-iron yoke. I assigned opposite magnetization directions to the two magnet groups, set up the air domain and local mesh, and completed the first three-dimensional magnetostatic solve.
+- **B₀ post-processing and resonance localization.** I exported the three field components and used Python to produce orthogonal field maps, vector plots, and centerline and transverse profiles. I interpolated the centerline to locate 13 MHz resonance and evaluated the local gradient. With the sample surface assumed to be flush with the first-pass coil plane, the estimated centerline resonance depth was about 9.8 mm.
+- **RF coil and return-path analysis.** I built an initial equivalent copper model of the three-turn square winding and lateral return path and checked conductor continuity. I used a Biot–Savart line integral to compare the winding alone with an early short return path and estimated B₁ and relative sensitivity on two orthogonal cross-sections.
+- **Current progress.** I am checking the coil and return-path geometry. The next step is to apply a 13 MHz current excitation, solve for B₁ in Maxwell, and combine B₀ and B₁ on a common sampling grid to estimate the lateral extent, layer thickness, and effective depth of the three-dimensional sensitivity region.
+"""
+
+[[items]]
+title = "Precision Pressure Measurement Instrument"
+subtitle = "Beijing ConST Instruments Technology Inc."
+date = "Jun – Jul 2025"
+content = "I helped design a precision pressure instrument and was responsible for team project planning, interface design, serial-port debugging, and data calibration. I received an excellent result in the final internship presentation."
+
+[[items]]
+title = "Industry Visits and Technical Exchange"
+subtitle = "Beijing SDL Technology Co., Ltd. and Beijing Century Jiantong Technology Co., Ltd."
+date = "Jun 2025"
